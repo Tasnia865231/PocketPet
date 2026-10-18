@@ -1,0 +1,9 @@
+<resources>
+    <style name="Theme.PocketPet" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/sage</item>
+        <item name="colorOnPrimary">@android:color/white</item>
+        <item name="android:windowBackground">@color/cream</item>
+        <item name="android:textColor">@color/bark</item>
+        <item name="android:textColorPrimary">@color/bark</item>
+    </style>
+</resources>

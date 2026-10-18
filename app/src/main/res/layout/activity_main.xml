@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:padding="12dp">
+        <TextView android:id="@+id/title" android:layout_width="0dp"
+            android:layout_height="wrap_content" android:layout_weight="1"
+            android:textSize="20sp" android:textStyle="bold" />
+        <TextView android:id="@+id/coins" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:textSize="18sp" />
+    </LinearLayout>
+    <com.example.pocketpet.view.PetView android:id="@+id/petView"
+        android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" />
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:paddingHorizontal="16dp" android:paddingTop="8dp">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:gravity="center_vertical" android:orientation="horizontal">
+            <TextView android:layout_width="64dp" android:layout_height="wrap_content" android:text="Hunger" />
+            <ProgressBar android:id="@+id/barHunger" style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:max="100" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:gravity="center_vertical" android:orientation="horizontal">
+            <TextView android:layout_width="64dp" android:layout_height="wrap_content" android:text="Energy" />
+            <ProgressBar android:id="@+id/barEnergy" style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:max="100" />
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:gravity="center_vertical" android:orientation="horizontal">
+            <TextView android:layout_width="64dp" android:layout_height="wrap_content" android:text="Mood" />
+            <ProgressBar android:id="@+id/barMood" style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:max="100" />
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:paddingHorizontal="8dp">
+        <Button android:id="@+id/btnFeed" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:insetLeft="2dp" android:insetRight="2dp"
+            android:paddingHorizontal="0dp" android:text="Feed" android:textSize="12sp" />
+        <Button android:id="@+id/btnPlay" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:insetLeft="2dp" android:insetRight="2dp"
+            android:paddingHorizontal="0dp" android:text="Play" android:textSize="12sp" />
+        <Button android:id="@+id/btnSleep" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:insetLeft="2dp" android:insetRight="2dp"
+            android:paddingHorizontal="0dp" android:text="Sleep" android:textSize="12sp" />
+        <Button android:id="@+id/btnClean" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:insetLeft="2dp" android:insetRight="2dp"
+            android:paddingHorizontal="0dp" android:text="Clean" android:textSize="12sp" />
+    </LinearLayout>
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:paddingHorizontal="8dp" android:paddingBottom="8dp">
+        <Button android:id="@+id/btnShop" style="@style/Widget.Material3.Button.TextButton" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:insetLeft="2dp" android:insetRight="2dp"
+            android:paddingHorizontal="0dp" android:text="Shop" android:textSize="12sp" />
+        <Button android:id="@+id/btnBag" style="@style/Widget.Material3.Button.TextButton" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:insetLeft="2dp" android:insetRight="2dp"
+            android:paddingHorizontal="0dp" android:text="Bag" android:textSize="12sp" />
+        <Button android:id="@+id/btnStats" style="@style/Widget.Material3.Button.TextButton" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:insetLeft="2dp" android:insetRight="2dp"
+            android:paddingHorizontal="0dp" android:text="Stats" android:textSize="12sp" />
+        <Button android:id="@+id/btnShare" style="@style/Widget.Material3.Button.TextButton" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:insetLeft="2dp" android:insetRight="2dp"
+            android:paddingHorizontal="0dp" android:text="Share" android:textSize="12sp" />
+        <Button android:id="@+id/btnSettings" style="@style/Widget.Material3.Button.TextButton" android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:insetLeft="2dp" android:insetRight="2dp"
+            android:paddingHorizontal="0dp" android:text="Settings" android:textSize="12sp" />
+    </LinearLayout>
+</LinearLayout>

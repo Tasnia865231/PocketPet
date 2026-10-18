@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:padding="20dp">
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="Settings" android:textSize="26sp" android:textStyle="bold" />
+    <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/switchTilt"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginTop="12dp" android:text="Tilt physics" />
+    <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/switchShake"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="Shake (dizzy)" />
+    <EditText android:id="@+id/editHour" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:hint="Hunger check hour (0-23)"
+        android:inputType="number" />
+    <EditText android:id="@+id/editLat" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:hint="Weather latitude"
+        android:inputType="numberDecimal|numberSigned" />
+    <EditText android:id="@+id/editLon" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:hint="Weather longitude"
+        android:inputType="numberDecimal|numberSigned" />
+    <Button android:id="@+id/btnSave" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="Save" />
+</LinearLayout>
