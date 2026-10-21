@@ -25,6 +25,7 @@ public class InventoryActivity extends AppCompatActivity {
         b.subtitle.setText("Tap food to feed, tap a hat to wear it");
         b.list.setLayoutManager(new LinearLayoutManager(this));
         b.list.setAdapter(adapter);
+        b.btnBack.setOnClickListener(v -> finish());
         refresh();
     }
 

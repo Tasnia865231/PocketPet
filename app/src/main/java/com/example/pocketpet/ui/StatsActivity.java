@@ -18,14 +18,21 @@ public class StatsActivity extends AppCompatActivity {
         setContentView(b.getRoot());
         final PetRepository repo = new PetRepository(this);
         final LogAdapter adapter = new LogAdapter();
-        b.title.setText("Growth history");
+        b.title.setText("Growth History");
         b.list.setLayoutManager(new LinearLayoutManager(this));
         b.list.setAdapter(adapter);
+        b.btnBack.setOnClickListener(v -> finish());
         Bg.IO.execute(() -> {
             Pet pet = repo.load();
+            // Derive stage from level (0=lv1-2, 1=lv3-5, 2=lv6+)
+            int stage = pet.level >= 6 ? 2 : pet.level >= 3 ? 1 : 0;
+            int xpNeeded = 50 * pet.level;
             List<GrowthLog> logs = repo.logs();
             Bg.UI.post(() -> {
-                b.subtitle.setText("XP " + pet.xp + "  |  Stage " + (pet.stage + 1) + "  |  Coins " + pet.coins);
+                b.subtitle.setText("Level " + pet.level
+                        + "  |  XP " + pet.xp + "/" + xpNeeded
+                        + "  |  Stage " + (stage + 1)
+                        + "  |  Coins " + pet.coins);
                 adapter.setLogs(logs);
             });
         });

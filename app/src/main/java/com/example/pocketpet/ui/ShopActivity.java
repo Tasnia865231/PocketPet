@@ -25,6 +25,7 @@ public class ShopActivity extends AppCompatActivity {
         b.title.setText("Shop");
         b.list.setLayoutManager(new LinearLayoutManager(this));
         b.list.setAdapter(adapter);
+        b.btnBack.setOnClickListener(v -> finish());
         refresh();
     }
 
@@ -34,6 +35,7 @@ public class ShopActivity extends AppCompatActivity {
             List<Item> items = repo.items();
             Bg.UI.post(() -> {
                 b.subtitle.setText("Coins: " + pet.coins + "  (tap an item to buy)");
+                adapter.setPetLevel(pet.level);
                 adapter.setItems(items);
             });
         });
