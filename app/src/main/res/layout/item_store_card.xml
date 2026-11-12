@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_margin="5dp" android:background="@drawable/bg_store_card"
+    android:clickable="true" android:focusable="true"
+    android:foreground="?attr/selectableItemBackground">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:gravity="center_horizontal" android:orientation="vertical"
+        android:paddingBottom="14dp" android:paddingHorizontal="8dp" android:paddingTop="12dp">
+        <com.example.pocketpet.ui.ItemIconView android:id="@+id/icon"
+            android:layout_width="96dp" android:layout_height="96dp" />
+        <TextView android:id="@+id/name" style="@style/Hud.Label" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginTop="4dp" android:gravity="center"
+            android:fontFamily="@font/fredoka_bold" android:maxLines="1" android:textColor="#5B3F30"
+            android:autoSizeTextType="uniform" android:autoSizeMinTextSize="11sp" android:autoSizeMaxTextSize="16sp" />
+        <TextView android:id="@+id/detail" style="@style/Hud.Label" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:layout_marginTop="1dp" android:gravity="center"
+            android:maxLines="1" android:textColor="#8A6A55" android:textSize="12sp" />
+        <TextView android:id="@+id/chip" style="@style/Hud.Label" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:layout_marginTop="6dp"
+            android:fontFamily="@font/fredoka_bold" android:gravity="center" android:minWidth="84dp"
+            android:paddingHorizontal="12dp" android:paddingVertical="4dp" android:textSize="14sp" />
+    </LinearLayout>
+</FrameLayout>

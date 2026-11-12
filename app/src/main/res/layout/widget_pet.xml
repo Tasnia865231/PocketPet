@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widgetRoot" android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="@drawable/bg_widget" android:gravity="center_vertical"
+    android:orientation="horizontal" android:padding="14dp">
+    <ImageView android:id="@+id/widgetIcon" android:layout_width="64dp" android:layout_height="64dp"
+        android:src="@drawable/ic_mochi_happy" />
+    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+        android:layout_marginStart="12dp" android:orientation="vertical">
+        <TextView android:id="@+id/widgetTitle" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:fontFamily="@font/fredoka_bold" android:maxLines="1" android:textColor="#5B3F30" android:textSize="16sp" />
+        <TextView android:id="@+id/widgetHunger" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="2dp" android:fontFamily="@font/fredoka_medium" android:text="Hunger"
+            android:textColor="#6B4A3A" android:textSize="11sp" />
+        <ProgressBar android:id="@+id/widgetBarHunger" style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent" android:layout_height="6dp" android:max="100"
+            android:minHeight="6dp" android:maxHeight="6dp" android:progressDrawable="@drawable/bar_hunger" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="2dp"
+            android:fontFamily="@font/fredoka_medium" android:text="Energy" android:textColor="#6B4A3A" android:textSize="11sp" />
+        <ProgressBar android:id="@+id/widgetBarEnergy" style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent" android:layout_height="6dp" android:max="100"
+            android:minHeight="6dp" android:maxHeight="6dp" android:progressDrawable="@drawable/bar_energy" />
+        <TextView android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="2dp"
+            android:fontFamily="@font/fredoka_medium" android:text="Mood" android:textColor="#6B4A3A" android:textSize="11sp" />
+        <ProgressBar android:id="@+id/widgetBarMood" style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent" android:layout_height="6dp" android:max="100"
+            android:minHeight="6dp" android:maxHeight="6dp" android:progressDrawable="@drawable/bar_mood" />
+    </LinearLayout>
+</LinearLayout>

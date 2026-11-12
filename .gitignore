@@ -1,0 +1,10 @@
+*.iml
+.gradle/
+/local.properties
+/.idea/
+/build/
+/app/build/
+.DS_Store
+
+# Firebase config for YOUR project: keep it out of public repositories (see app/google-services.example.json)
+/app/google-services.json

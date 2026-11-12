@@ -1,0 +1,11 @@
+<resources>
+    <color name="cream">#F6EBD4</color>
+    <color name="sage">#7FA173</color>
+    <color name="bark">#5B4636</color>
+    <!-- mini-games (cozy pastel storybook) -->
+    <color name="game_text">#6B4A3A</color>
+    <color name="game_subtext">#8E6F5E</color>
+    <color name="game_easy">#4FA97C</color>
+    <color name="game_medium">#E19A2E</color>
+    <color name="game_hard">#E0708A</color>
+</resources>

@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Online Tic-Tac-Toe: both phones show this same screen and the same board (everything comes from the database).
+     Storybook style like the rest of Mochi: cream paper, pastel cards, Fredoka bubble font everywhere. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:background="#F6EBD4">
+
+    <LinearLayout android:id="@+id/mainColumn"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:orientation="vertical" android:paddingHorizontal="14dp" android:paddingTop="10dp"
+        android:paddingBottom="14dp">
+
+        <!-- top bar -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:gravity="center_vertical" android:orientation="horizontal">
+            <com.example.pocketpet.view.BubbleButton android:id="@+id/btnLeave" style="@style/Hud.Button"
+                android:layout_width="wrap_content" android:layout_height="38dp"
+                android:background="@drawable/btn_nav_share" android:paddingHorizontal="16dp"
+                android:textSize="14sp" app:outlineColor="#417F9C" app:outlineWidth="2.5dp" android:text="Leave" />
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1"
+                android:fontFamily="@font/fredoka_bold" android:gravity="center" android:text="Tic-Tac-Toe"
+                android:textColor="#5B3F30" android:textSize="26sp" />
+            <View android:layout_width="64dp" android:layout_height="1dp" />
+        </LinearLayout>
+
+        <!-- scoreboard: Player 1 (X) | round + score | Player 2 (O) -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="10dp" android:baselineAligned="false" android:orientation="horizontal">
+
+            <LinearLayout android:id="@+id/cardX" android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:background="@drawable/bg_pcard_mint" android:gravity="center_horizontal"
+                android:orientation="vertical" android:paddingBottom="14dp" android:paddingHorizontal="8dp"
+                android:paddingTop="8dp">
+                <TextView android:id="@+id/tvXLetter" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:fontFamily="@font/fredoka_bold" android:text="X" android:textColor="#4FA97C"
+                    android:textSize="26sp" />
+                <TextView android:id="@+id/tvXName" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:ellipsize="end" android:fontFamily="@font/fredoka_bold" android:gravity="center"
+                    android:maxLines="1" android:textColor="#5B4636" android:textSize="15sp" />
+                <TextView android:id="@+id/tvXScore" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:fontFamily="@font/fredoka_bold" android:text="0" android:textColor="#3F8F63"
+                    android:textSize="32sp" />
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="0.85"
+                android:gravity="center_horizontal" android:orientation="vertical" android:paddingTop="14dp">
+                <TextView android:id="@+id/tvRound" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:background="@drawable/bg_chip_score" android:fontFamily="@font/fredoka_bold"
+                    android:paddingBottom="4dp" android:paddingHorizontal="12dp" android:paddingTop="2dp"
+                    android:text="Round 1/3" android:textColor="#3F78A0" android:textSize="15sp" />
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp" android:fontFamily="@font/fredoka_medium" android:text="score"
+                    android:textColor="#8E6F5E" android:textSize="13sp" />
+            </LinearLayout>
+
+            <LinearLayout android:id="@+id/cardO" android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:background="@drawable/bg_pcard_peach" android:gravity="center_horizontal"
+                android:orientation="vertical" android:paddingBottom="14dp" android:paddingHorizontal="8dp"
+                android:paddingTop="8dp">
+                <TextView android:id="@+id/tvOLetter" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:fontFamily="@font/fredoka_bold" android:text="O" android:textColor="#E0708A"
+                    android:textSize="26sp" />
+                <TextView android:id="@+id/tvOName" android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:ellipsize="end" android:fontFamily="@font/fredoka_bold" android:gravity="center"
+                    android:maxLines="1" android:textColor="#5B4636" android:textSize="15sp" />
+                <TextView android:id="@+id/tvOScore" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:fontFamily="@font/fredoka_bold" android:text="0" android:textColor="#C65A78"
+                    android:textSize="32sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- whose turn -->
+        <TextView android:id="@+id/tvTurn" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="12dp" android:fontFamily="@font/fredoka_bold" android:gravity="center"
+            android:text="Getting the board ready..." android:textColor="#6B4A3A" android:textSize="20sp" />
+
+        <!-- the shared board -->
+        <com.example.pocketpet.game.MatchBoardView android:id="@+id/board"
+            android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"
+            android:layout_marginTop="6dp" />
+
+        <!-- connection / "friend stepped away" message -->
+        <TextView android:id="@+id/tvHint" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="6dp" android:fontFamily="@font/fredoka_medium" android:gravity="center"
+            android:minHeight="20dp" android:textColor="#8E6F5E" android:textSize="14sp" />
+    </LinearLayout>
+
+    <!-- round result pop-up (shows between rounds) -->
+    <TextView android:id="@+id/tvBanner" android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_gravity="center" android:background="@drawable/bg_dialog_kawaii" android:elevation="10dp"
+        android:fontFamily="@font/fredoka_bold" android:gravity="center" android:maxWidth="300dp"
+        android:paddingBottom="26dp" android:paddingHorizontal="30dp" android:paddingTop="22dp"
+        android:textColor="#5B3F30" android:textSize="24sp" android:visibility="gone" />
+
+    <!-- final result -->
+    <FrameLayout android:id="@+id/overlay" android:layout_width="match_parent" android:layout_height="match_parent"
+        android:background="@drawable/bg_scrim" android:clickable="true" android:focusable="true"
+        android:visibility="gone">
+        <LinearLayout android:id="@+id/finalCard" android:layout_width="300dp" android:layout_height="wrap_content"
+            android:layout_gravity="center" android:background="@drawable/bg_dialog_kawaii"
+            android:gravity="center_horizontal" android:orientation="vertical" android:paddingBottom="24dp"
+            android:paddingHorizontal="22dp" android:paddingTop="20dp">
+            <ImageView android:id="@+id/imgFinal" android:layout_width="96dp" android:layout_height="96dp"
+                android:contentDescription="Mochi" android:src="@drawable/ic_mochi_happy" />
+            <TextView android:id="@+id/tvFinalTitle" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="6dp" android:fontFamily="@font/fredoka_bold" android:gravity="center"
+                android:textColor="#5B3F30" android:textSize="25sp" />
+            <TextView android:id="@+id/tvFinalSub" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="6dp" android:fontFamily="@font/fredoka_medium" android:gravity="center"
+                android:textColor="#8A6A55" android:textSize="16sp" />
+            <LinearLayout android:id="@+id/rewardRow" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_marginTop="12dp" android:background="@drawable/bg_coin_chip" android:gravity="center_vertical"
+                android:orientation="horizontal" android:paddingBottom="6dp" android:paddingHorizontal="18dp"
+                android:paddingTop="4dp" android:visibility="gone">
+                <ImageView android:id="@+id/imgCoin" android:layout_width="40dp" android:layout_height="40dp"
+                    android:contentDescription="Coin" android:src="@drawable/ic_coin_cute" />
+                <TextView android:id="@+id/tvReward" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp" android:fontFamily="@font/fredoka_bold" android:text="+0"
+                    android:textColor="#9A7420" android:textSize="34sp" />
+            </LinearLayout>
+            <TextView android:id="@+id/tvBalance" android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="6dp" android:fontFamily="@font/fredoka_medium" android:gravity="center"
+                android:textColor="#9A7420" android:textSize="15sp" />
+            <com.example.pocketpet.view.BubbleButton android:id="@+id/btnDone" style="@style/Hud.Button"
+                android:layout_width="match_parent" android:layout_height="48dp" android:layout_marginTop="16dp"
+                android:background="@drawable/btn_bath" android:textSize="17sp"
+                app:outlineColor="#B84F74" app:outlineWidth="3dp" android:text="Back to Mochi" />
+        </LinearLayout>
+        <!-- flying coins are added here -->
+        <FrameLayout android:id="@+id/coinLayer" android:layout_width="match_parent" android:layout_height="match_parent"
+            android:clickable="false" />
+    </FrameLayout>
+
+    <!-- CHAT (everything below sits above the final-result screen so chat keeps working until you leave) -->
+    <!-- floating bubbles: never clickable, so the board underneath always gets the taps -->
+    <com.example.pocketpet.ui.ChatBubbleLayer android:id="@+id/bubbleLayer"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:clickable="false" android:focusable="false" android:elevation="14dp" />
+
+    <!-- kawaii speech-bubble button -->
+    <ImageView android:id="@+id/btnChat" android:layout_width="46dp" android:layout_height="46dp"
+        android:layout_gravity="top|end" android:layout_marginEnd="12dp" android:layout_marginTop="7dp"
+        android:background="@drawable/bg_chat_btn" android:clickable="true" android:contentDescription="Chat"
+        android:elevation="16dp" android:focusable="true" android:padding="10dp" android:src="@drawable/ic_chat_bubble" />
+
+    <!-- compact input bar: reconnect hint, one-tap emoji row, text field + send -->
+    <LinearLayout android:id="@+id/chatBar" android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_gravity="bottom" android:background="@drawable/bg_chat_bar" android:clickable="true"
+        android:elevation="16dp" android:focusable="false" android:orientation="vertical"
+        android:paddingBottom="10dp" android:paddingHorizontal="14dp" android:paddingTop="12dp" android:visibility="gone">
+        <TextView android:id="@+id/tvChatHint" android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp" android:fontFamily="@font/fredoka_bold" android:gravity="center"
+            android:text="Reconnecting..." android:textColor="#C65A78" android:textSize="15sp" android:visibility="gone" />
+        <HorizontalScrollView android:id="@+id/chatEmojiScroll" android:layout_width="match_parent"
+            android:layout_height="46dp" android:layout_marginBottom="6dp" android:overScrollMode="never"
+            android:scrollbars="none">
+            <LinearLayout android:id="@+id/chatEmojiList" android:layout_width="wrap_content"
+                android:layout_height="match_parent" android:gravity="center_vertical" android:orientation="horizontal">
+                <TextView android:layout_width="42dp" android:layout_height="42dp" android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_chat_emoji" android:clickable="true" android:focusable="true"
+                    android:fontFamily="@font/fredoka_bold" android:gravity="center" android:includeFontPadding="false"
+                    android:text="&#x1F60A;" android:textSize="22sp" />
+                <TextView android:layout_width="42dp" android:layout_height="42dp" android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_chat_emoji" android:clickable="true" android:focusable="true"
+                    android:fontFamily="@font/fredoka_bold" android:gravity="center" android:includeFontPadding="false"
+                    android:text="&#x1F602;" android:textSize="22sp" />
+                <TextView android:layout_width="42dp" android:layout_height="42dp" android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_chat_emoji" android:clickable="true" android:focusable="true"
+                    android:fontFamily="@font/fredoka_bold" android:gravity="center" android:includeFontPadding="false"
+                    android:text="&#x1F618;" android:textSize="22sp" />
+                <TextView android:layout_width="42dp" android:layout_height="42dp" android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_chat_emoji" android:clickable="true" android:focusable="true"
+                    android:fontFamily="@font/fredoka_bold" android:gravity="center" android:includeFontPadding="false"
+                    android:text="&#x1F60D;" android:textSize="22sp" />
+                <TextView android:layout_width="42dp" android:layout_height="42dp" android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_chat_emoji" android:clickable="true" android:focusable="true"
+                    android:fontFamily="@font/fredoka_bold" android:gravity="center" android:includeFontPadding="false"
+                    android:text="&#x1F62D;" android:textSize="22sp" />
+                <TextView android:layout_width="42dp" android:layout_height="42dp" android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_chat_emoji" android:clickable="true" android:focusable="true"
+                    android:fontFamily="@font/fredoka_bold" android:gravity="center" android:includeFontPadding="false"
+                    android:text="&#x1F60E;" android:textSize="22sp" />
+                <TextView android:layout_width="42dp" android:layout_height="42dp" android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_chat_emoji" android:clickable="true" android:focusable="true"
+                    android:fontFamily="@font/fredoka_bold" android:gravity="center" android:includeFontPadding="false"
+                    android:text="&#x1F44D;" android:textSize="22sp" />
+                <TextView android:layout_width="42dp" android:layout_height="42dp" android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_chat_emoji" android:clickable="true" android:focusable="true"
+                    android:fontFamily="@font/fredoka_bold" android:gravity="center" android:includeFontPadding="false"
+                    android:text="&#x1F44F;" android:textSize="22sp" />
+                <TextView android:layout_width="42dp" android:layout_height="42dp" android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_chat_emoji" android:clickable="true" android:focusable="true"
+                    android:fontFamily="@font/fredoka_bold" android:gravity="center" android:includeFontPadding="false"
+                    android:text="&#x1F389;" android:textSize="22sp" />
+                <TextView android:layout_width="42dp" android:layout_height="42dp" android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_chat_emoji" android:clickable="true" android:focusable="true"
+                    android:fontFamily="@font/fredoka_bold" android:gravity="center" android:includeFontPadding="false"
+                    android:text="&#x1F496;" android:textSize="22sp" />
+                <TextView android:layout_width="42dp" android:layout_height="42dp" android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_chat_emoji" android:clickable="true" android:focusable="true"
+                    android:fontFamily="@font/fredoka_bold" android:gravity="center" android:includeFontPadding="false"
+                    android:text="&#x1F338;" android:textSize="22sp" />
+                <TextView android:layout_width="42dp" android:layout_height="42dp" android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_chat_emoji" android:clickable="true" android:focusable="true"
+                    android:fontFamily="@font/fredoka_bold" android:gravity="center" android:includeFontPadding="false"
+                    android:text="&#x1F431;" android:textSize="22sp" />
+                <TextView android:layout_width="42dp" android:layout_height="42dp" android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_chat_emoji" android:clickable="true" android:focusable="true"
+                    android:fontFamily="@font/fredoka_bold" android:gravity="center" android:includeFontPadding="false"
+                    android:text="&#x2728;" android:textSize="22sp" />
+                <TextView android:layout_width="42dp" android:layout_height="42dp" android:layout_marginEnd="8dp"
+                    android:background="@drawable/bg_chat_emoji" android:clickable="true" android:focusable="true"
+                    android:fontFamily="@font/fredoka_bold" android:gravity="center" android:includeFontPadding="false"
+                    android:text="&#x1F62E;" android:textSize="22sp" />
+            </LinearLayout>
+        </HorizontalScrollView>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:gravity="center_vertical" android:orientation="horizontal">
+            <EditText android:id="@+id/etChat" android:layout_width="0dp" android:layout_height="46dp"
+                android:layout_weight="1" android:background="@drawable/bg_input" android:fontFamily="@font/fredoka_medium"
+                android:hint="Say something cute..." android:imeOptions="actionSend" android:importantForAutofill="no"
+                android:inputType="text" android:maxLength="60" android:maxLines="1"
+                android:paddingHorizontal="16dp" android:textColor="#5B4636" android:textColorHint="#B79F8C" android:textSize="16sp" />
+            <com.example.pocketpet.view.BubbleButton android:id="@+id/btnChatSend" style="@style/Hud.Button"
+                android:layout_width="82dp" android:layout_height="46dp" android:layout_marginStart="8dp"
+                android:background="@drawable/btn_bath" android:text="Send" android:textSize="16sp"
+                app:outlineColor="#B84F74" app:outlineWidth="2.5dp" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

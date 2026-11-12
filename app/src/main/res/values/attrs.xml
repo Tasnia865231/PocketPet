@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Bubble-style text with a darker outline (used by BubbleButton) -->
+    <declare-styleable name="BubbleButton">
+        <attr name="outlineColor" format="color" />
+        <attr name="outlineWidth" format="dimension" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- tiny speech bubble with three dots (chat button on the match screen) -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="24dp" android:viewportWidth="24" android:viewportHeight="24">
+    <path android:fillColor="#FFFFFF" android:strokeColor="#E0708A" android:strokeWidth="1.7" android:strokeLineJoin="round"
+        android:pathData="M6,3.5 H18 A3.5,3.5 0 0 1 21.5,7 V13 A3.5,3.5 0 0 1 18,16.5 H12 L7.5,20.5 V16.5 H6 A3.5,3.5 0 0 1 2.5,13 V7 A3.5,3.5 0 0 1 6,3.5 Z" />
+    <path android:fillColor="#E0708A"
+        android:pathData="M8,10 m-1.2,0 a1.2,1.2 0 1,0 2.4,0 a1.2,1.2 0 1,0 -2.4,0 M12,10 m-1.2,0 a1.2,1.2 0 1,0 2.4,0 a1.2,1.2 0 1,0 -2.4,0 M16,10 m-1.2,0 a1.2,1.2 0 1,0 2.4,0 a1.2,1.2 0 1,0 -2.4,0" />
+</vector>

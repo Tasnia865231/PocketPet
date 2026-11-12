@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical" android:padding="20dp">
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="Settings" android:textSize="26sp" android:textStyle="bold" />
+    <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/switchTilt"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_marginTop="12dp" android:text="Tilt physics" />
+    <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/switchShake"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="Shake (dizzy)" />
+    <!-- Mochi voice: tap Mochi, he repeats what you say in a cute voice -->
+    <com.google.android.material.materialswitch.MaterialSwitch android:id="@+id/switchVoice"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:text="Mochi voice (repeats what you say)" />
+    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:fontFamily="@font/fredoka_medium" android:paddingBottom="8dp"
+        android:text="Tap Mochi, say something, and he repeats it in a cute voice. Sound is only used right then and is never saved or sent anywhere."
+        android:textColor="#8A6A55" android:textSize="12sp" />
+    <EditText android:id="@+id/editHour" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:hint="Hunger check hour (0-23)"
+        android:inputType="number" />
+    <EditText android:id="@+id/editLat" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:hint="Weather latitude"
+        android:inputType="numberDecimal|numberSigned" />
+    <EditText android:id="@+id/editLon" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:hint="Weather longitude"
+        android:inputType="numberDecimal|numberSigned" />
+    <!-- Fills the two weather fields above from the phone's location -->
+    <Button android:id="@+id/btnUseLocation" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:layout_marginTop="8dp"
+        android:text="Use my location" />
+    <Button android:id="@+id/btnSave" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="Save" />
+    <!-- Firebase: log out (the player's progress stays safe in the cloud) -->
+    <Button android:id="@+id/btnLogout" style="@style/Hud.Button"
+        android:layout_width="match_parent" android:layout_height="48dp"
+        android:layout_marginTop="12dp" android:background="@drawable/bg_btn_secondary"
+        android:text="Log out" android:textColor="#8E4A5E" android:textSize="16sp" />
+</LinearLayout>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <!-- ===== Main content (always visible) ===== -->
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <!-- Title row + coins -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:paddingHorizontal="14dp" android:paddingTop="8dp"
+            android:paddingBottom="2dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal" android:gravity="center_vertical">
+                <TextView android:id="@+id/title" style="@style/Hud.Label" android:layout_width="0dp"
+                    android:layout_height="wrap_content" android:layout_weight="1"
+                    android:fontFamily="@font/fredoka_bold" android:textColor="#5B3F30"
+                    android:textSize="21sp" />
+                <TextView android:id="@+id/coins" style="@style/Hud.Label" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:fontFamily="@font/fredoka_bold"
+                    android:textColor="#7A5238" android:textSize="17sp" />
+            </LinearLayout>
+            <!-- Level badge + XP bar -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="2dp" android:orientation="horizontal" android:gravity="center_vertical">
+                <TextView android:id="@+id/levelBadge" style="@style/Hud.Label" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:textSize="15sp"
+                    android:fontFamily="@font/fredoka_bold" android:textColor="#6B4A3A"
+                    android:paddingEnd="8dp" />
+                <ProgressBar android:id="@+id/barXp"
+                    style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp" android:layout_height="8dp"
+                    android:layout_weight="1" android:max="100"
+                    android:minHeight="8dp" android:maxHeight="8dp"
+                    android:progressDrawable="@drawable/bar_xp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Pet view (takes all remaining space) -->
+        <com.example.pocketpet.view.PetView android:id="@+id/petView"
+            android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" />
+
+        <!-- ===== Big cream status panel: 4 stat bars + the 4 main action buttons ===== -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp" android:layout_marginTop="6dp"
+            android:background="@drawable/bg_hud_panel"
+            android:orientation="vertical"
+            android:paddingStart="16dp" android:paddingEnd="16dp"
+            android:paddingTop="12dp" android:paddingBottom="9dp">
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="22dp"
+                android:gravity="center_vertical" android:orientation="horizontal">
+                <TextView style="@style/Hud.Label" android:layout_width="68dp" android:layout_height="wrap_content"
+                    android:text="Hunger" android:textSize="15sp" />
+                <ProgressBar android:id="@+id/barHunger" style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp" android:layout_height="8dp" android:layout_weight="1"
+                    android:max="100" android:minHeight="8dp" android:maxHeight="8dp"
+                    android:progressDrawable="@drawable/bar_hunger" />
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="22dp"
+                android:layout_marginTop="3dp" android:gravity="center_vertical" android:orientation="horizontal">
+                <TextView style="@style/Hud.Label" android:layout_width="68dp" android:layout_height="wrap_content"
+                    android:text="Energy" android:textSize="15sp" />
+                <ProgressBar android:id="@+id/barEnergy" style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp" android:layout_height="8dp" android:layout_weight="1"
+                    android:max="100" android:minHeight="8dp" android:maxHeight="8dp"
+                    android:progressDrawable="@drawable/bar_energy" />
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="22dp"
+                android:layout_marginTop="3dp" android:gravity="center_vertical" android:orientation="horizontal">
+                <TextView style="@style/Hud.Label" android:layout_width="68dp" android:layout_height="wrap_content"
+                    android:text="Mood" android:textSize="15sp" />
+                <ProgressBar android:id="@+id/barMood" style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp" android:layout_height="8dp" android:layout_weight="1"
+                    android:max="100" android:minHeight="8dp" android:maxHeight="8dp"
+                    android:progressDrawable="@drawable/bar_mood" />
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent" android:layout_height="22dp"
+                android:layout_marginTop="3dp" android:gravity="center_vertical" android:orientation="horizontal">
+                <TextView style="@style/Hud.Label" android:layout_width="68dp" android:layout_height="wrap_content"
+                    android:text="Clean" android:textSize="15sp" />
+                <ProgressBar android:id="@+id/barClean" style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_width="0dp" android:layout_height="8dp" android:layout_weight="1"
+                    android:max="100" android:minHeight="8dp" android:maxHeight="8dp"
+                    android:progressDrawable="@drawable/bar_clean" />
+            </LinearLayout>
+
+            <!-- Primary action buttons: Feed, Play, Sleep/Wake, Bath -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginTop="8dp" android:orientation="horizontal">
+                <com.example.pocketpet.view.BubbleButton android:id="@+id/btnFeed" style="@style/Hud.Button"
+                    android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1"
+                    android:layout_marginHorizontal="3dp" android:background="@drawable/btn_feed"
+                    android:autoSizeTextType="uniform" android:autoSizeMinTextSize="10sp"
+                    android:autoSizeMaxTextSize="17sp" android:autoSizeStepGranularity="1sp"
+                    app:outlineColor="#4F7A45" app:outlineWidth="3dp"
+                    android:text="Feed" />
+                <com.example.pocketpet.view.BubbleButton android:id="@+id/btnPlay" style="@style/Hud.Button"
+                    android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1"
+                    android:layout_marginHorizontal="3dp" android:background="@drawable/btn_play"
+                    android:autoSizeTextType="uniform" android:autoSizeMinTextSize="10sp"
+                    android:autoSizeMaxTextSize="17sp" android:autoSizeStepGranularity="1sp"
+                    app:outlineColor="#B8861F" app:outlineWidth="3dp"
+                    android:text="Play" />
+                <com.example.pocketpet.view.BubbleButton android:id="@+id/btnSleep" style="@style/Hud.Button"
+                    android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1"
+                    android:layout_marginHorizontal="3dp" android:background="@drawable/btn_sleep"
+                    android:autoSizeTextType="uniform" android:autoSizeMinTextSize="10sp"
+                    android:autoSizeMaxTextSize="17sp" android:autoSizeStepGranularity="1sp"
+                    app:outlineColor="#4A81B8" app:outlineWidth="3dp"
+                    android:text="Sleep" />
+                <com.example.pocketpet.view.BubbleButton android:id="@+id/btnClean" style="@style/Hud.Button"
+                    android:layout_width="0dp" android:layout_height="48dp" android:layout_weight="1"
+                    android:layout_marginHorizontal="3dp" android:background="@drawable/btn_bath"
+                    android:autoSizeTextType="uniform" android:autoSizeMinTextSize="10sp"
+                    android:autoSizeMaxTextSize="17sp" android:autoSizeStepGranularity="1sp"
+                    app:outlineColor="#B84F74" app:outlineWidth="3dp"
+                    android:text="Bath" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Secondary nav buttons: Shop, Bag, Stats, Share, Settings (smaller, one row) -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:paddingHorizontal="8dp"
+            android:paddingTop="6dp" android:paddingBottom="8dp">
+            <com.example.pocketpet.view.BubbleButton android:id="@+id/btnShop" style="@style/Hud.Button"
+                android:layout_width="0dp" android:layout_height="38dp" android:layout_weight="1"
+                android:layout_marginHorizontal="2dp" android:background="@drawable/btn_nav_shop"
+                android:autoSizeTextType="uniform" android:autoSizeMinTextSize="9sp"
+                android:autoSizeMaxTextSize="14sp" android:autoSizeStepGranularity="1sp"
+                app:outlineColor="#B8654C" app:outlineWidth="2.5dp" android:text="Shop" />
+            <com.example.pocketpet.view.BubbleButton android:id="@+id/btnBag" style="@style/Hud.Button"
+                android:layout_width="0dp" android:layout_height="38dp" android:layout_weight="1"
+                android:layout_marginHorizontal="2dp" android:background="@drawable/btn_nav_bag"
+                android:autoSizeTextType="uniform" android:autoSizeMinTextSize="9sp"
+                android:autoSizeMaxTextSize="14sp" android:autoSizeStepGranularity="1sp"
+                app:outlineColor="#8F6542" app:outlineWidth="2.5dp" android:text="Bag" />
+            <com.example.pocketpet.view.BubbleButton android:id="@+id/btnStats" style="@style/Hud.Button"
+                android:layout_width="0dp" android:layout_height="38dp" android:layout_weight="1"
+                android:layout_marginHorizontal="2dp" android:background="@drawable/btn_nav_stats"
+                android:autoSizeTextType="uniform" android:autoSizeMinTextSize="9sp"
+                android:autoSizeMaxTextSize="14sp" android:autoSizeStepGranularity="1sp"
+                app:outlineColor="#A9831F" app:outlineWidth="2.5dp" android:text="Stats" />
+            <com.example.pocketpet.view.BubbleButton android:id="@+id/btnShare" style="@style/Hud.Button"
+                android:layout_width="0dp" android:layout_height="38dp" android:layout_weight="1"
+                android:layout_marginHorizontal="2dp" android:background="@drawable/btn_nav_share"
+                android:autoSizeTextType="uniform" android:autoSizeMinTextSize="9sp"
+                android:autoSizeMaxTextSize="14sp" android:autoSizeStepGranularity="1sp"
+                app:outlineColor="#417F9C" app:outlineWidth="2.5dp" android:text="Share" />
+            <com.example.pocketpet.view.BubbleButton android:id="@+id/btnFriends" style="@style/Hud.Button"
+                android:layout_width="0dp" android:layout_height="38dp" android:layout_weight="1"
+                android:layout_marginHorizontal="2dp" android:background="@drawable/btn_nav_friends"
+                android:autoSizeTextType="uniform" android:autoSizeMinTextSize="9sp"
+                android:autoSizeMaxTextSize="14sp" android:autoSizeStepGranularity="1sp"
+                app:outlineColor="#4F8F69" app:outlineWidth="2.5dp" android:text="Friends" />
+            <com.example.pocketpet.view.BubbleButton android:id="@+id/btnSettings" style="@style/Hud.Button"
+                android:layout_width="0dp" android:layout_height="38dp" android:layout_weight="1"
+                android:layout_marginHorizontal="2dp" android:background="@drawable/btn_nav_settings"
+                android:autoSizeTextType="uniform" android:autoSizeMinTextSize="9sp"
+                android:autoSizeMaxTextSize="14sp" android:autoSizeStepGranularity="1sp"
+                app:outlineColor="#6E559A" app:outlineWidth="2.5dp" android:text="Settings" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ===== Food menu overlay (bottom panel, GONE by default) ===== -->
+    <LinearLayout android:id="@+id/foodPanel"
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="#EEF3E6CF"
+        android:orientation="vertical"
+        android:padding="12dp"
+        android:visibility="gone">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:gravity="center_vertical">
+            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Choose food:" android:textSize="15sp" android:textStyle="bold" />
+            <Button android:id="@+id/btnCloseFoodPanel"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="Close" android:textSize="12sp" />
+        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView android:id="@+id/foodRecycler"
+            android:layout_width="match_parent" android:layout_height="110dp"
+            android:orientation="horizontal" />
+    </LinearLayout>
+
+    <!-- ===== Bath "Done" button (GONE by default, shown during bathing) ===== -->
+    <Button android:id="@+id/btnBathDone"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="248dp"
+        android:text="Done"
+        android:visibility="gone" />
+
+</FrameLayout>

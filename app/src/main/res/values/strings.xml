@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Pocket Pet</string>
+    <string name="perm_read_label">Read Mochi\'s stats</string>
+    <string name="perm_read_desc">Lets this app read Mochi\'s hunger, energy, mood and the items in the bag.</string>
+    <string name="perm_write_label">Change Mochi\'s stats</string>
+    <string name="perm_write_desc">Lets this app feed, play with or change Mochi. Only apps signed by the same developer can get it.</string>
+    <string name="widget_label">Mochi</string>
+    <string name="widget_desc">See how Mochi is feeling right on your home screen.</string>
+</resources>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- One player card: status dot, name, "Online" / "Last seen ...", coins. Background set by PlayerStatusAdapter. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:gravity="center_vertical" android:orientation="horizontal"
+    android:paddingBottom="17dp" android:paddingHorizontal="18dp" android:paddingTop="13dp">
+
+    <View
+        android:id="@+id/playerDot"
+        android:layout_width="14dp" android:layout_height="14dp"
+        android:layout_marginEnd="12dp" android:background="@drawable/bg_dot_offline" />
+
+    <LinearLayout
+        android:layout_width="0dp" android:layout_height="wrap_content"
+        android:layout_weight="1" android:orientation="vertical">
+        <TextView
+            android:id="@+id/playerName"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:fontFamily="@font/fredoka_bold" android:textColor="#5B4636" android:textSize="18sp" />
+        <TextView
+            android:id="@+id/playerState"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:fontFamily="@font/fredoka_medium" android:textSize="14sp" />
+        <!-- the player's coins (from Firestore) -->
+        <LinearLayout
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="3dp" android:gravity="center_vertical" android:orientation="horizontal">
+            <ImageView
+                android:layout_width="18dp" android:layout_height="18dp"
+                android:layout_marginEnd="5dp" android:contentDescription="Coin"
+                android:src="@drawable/ic_coin_cute" />
+            <TextView
+                android:id="@+id/playerCoins"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:fontFamily="@font/fredoka_medium" android:textColor="#9A7420" android:textSize="14sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Invite to online Tic-Tac-Toe: only shown for OTHER players who are online (see PlayerStatusAdapter) -->
+    <com.example.pocketpet.view.BubbleButton
+        android:id="@+id/btnInvite" style="@style/Hud.Button"
+        android:layout_width="wrap_content" android:layout_height="40dp"
+        android:layout_marginStart="8dp" android:background="@drawable/btn_play"
+        android:paddingHorizontal="16dp" android:text="Invite" android:textSize="15sp"
+        android:visibility="gone" app:outlineColor="#B8861F" app:outlineWidth="2.5dp" />
+</LinearLayout>

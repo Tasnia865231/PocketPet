@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Login / Register screen. One screen, two modes (LoginActivity switches the texts and shows/hides the name box). -->
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:gravity="center_horizontal" android:orientation="vertical"
+        android:paddingLeft="24dp" android:paddingRight="24dp"
+        android:paddingTop="40dp" android:paddingBottom="32dp">
+
+        <ImageView
+            android:layout_width="120dp" android:layout_height="120dp"
+            android:contentDescription="Mochi" android:src="@drawable/ic_mochi_happy" />
+
+        <TextView
+            android:id="@+id/textTitle"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="8dp" android:text="Welcome back!"
+            android:fontFamily="@font/fredoka_bold" android:textColor="#6B4A3A" android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/textSubtitle"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:layout_marginTop="2dp" android:text="Mochi missed you"
+            android:fontFamily="@font/fredoka_medium" android:textColor="#8E6F5E" android:textSize="15sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:layout_marginTop="20dp" android:background="@drawable/bg_card"
+            android:orientation="vertical" android:padding="20dp">
+
+            <!-- only visible when registering: the name other players will see -->
+            <EditText
+                android:id="@+id/editName"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp" android:background="@drawable/bg_input"
+                android:fontFamily="@font/fredoka_medium" android:hint="Your player name"
+                android:inputType="textPersonName" android:maxLength="16" android:maxLines="1"
+                android:padding="14dp" android:textColor="#5B4636" android:textColorHint="#B59A86"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/editEmail"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp" android:background="@drawable/bg_input"
+                android:fontFamily="@font/fredoka_medium" android:hint="Email"
+                android:inputType="textEmailAddress" android:maxLines="1"
+                android:padding="14dp" android:textColor="#5B4636" android:textColorHint="#B59A86" />
+
+            <EditText
+                android:id="@+id/editPass"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:background="@drawable/bg_input"
+                android:fontFamily="@font/fredoka_medium" android:hint="Password (6+ letters)"
+                android:inputType="textPassword" android:maxLines="1"
+                android:padding="14dp" android:textColor="#5B4636" android:textColorHint="#B59A86" />
+
+            <Button
+                android:id="@+id/btnMain"
+                style="@style/Hud.Button"
+                android:layout_width="match_parent" android:layout_height="52dp"
+                android:layout_marginTop="18dp" android:background="@drawable/bg_btn_primary"
+                android:text="Log in" android:textColor="#3F6B55" android:textSize="18sp" />
+
+            <Button
+                android:id="@+id/btnToggle"
+                style="@style/Hud.Button"
+                android:layout_width="match_parent" android:layout_height="46dp"
+                android:layout_marginTop="10dp" android:background="@drawable/bg_btn_secondary"
+                android:text="New here? Create an account" android:textColor="#8E4A5E" android:textSize="15sp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

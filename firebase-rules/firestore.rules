@@ -1,0 +1,82 @@
+rules_version = '2';
+
+// Cloud Firestore security rules for Mochi.
+// Paste this whole file into: Firebase Console > Firestore Database > Rules tab > Publish.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Each player owns exactly one document: players/{their own UID}
+    match /players/{uid} {
+
+      function isOwner()  { return request.auth != null && request.auth.uid == uid; }
+      function keysOk()   { return request.resource.data.keys().hasOnly(
+                              ['uid', 'displayName', 'level', 'totalCoins', 'createdAt', 'lastLoginAt']); }
+      function nameOk(n)  { return n is string && n.size() >= 1 && n.size() <= 16; }
+
+      // Any logged-in player may READ profiles (the Friends screen shows everyone's coins).
+      // Nobody who is not logged in can read anything.
+      allow read: if request.auth != null;
+
+      // Creating the profile: only for yourself, with every field, a sane start, and Firebase's clock for the dates.
+      allow create: if isOwner() && keysOk()
+        && request.resource.data.keys().hasAll(
+             ['uid', 'displayName', 'level', 'totalCoins', 'createdAt', 'lastLoginAt'])
+        && request.resource.data.uid == uid
+        && nameOk(request.resource.data.displayName)
+        && request.resource.data.level is int
+        && request.resource.data.level >= 1 && request.resource.data.level <= 10
+        && request.resource.data.totalCoins is int
+        && request.resource.data.totalCoins >= 0 && request.resource.data.totalCoins <= 5000
+        && request.resource.data.createdAt == request.time
+        && request.resource.data.lastLoginAt == request.time;
+
+      // Updating: only YOUR OWN profile; identity and creation date can never change;
+      // level can only go up (a few levels at most per save);
+      // coins can drop (shopping) but only rise by a limited amount per save.
+      allow update: if isOwner() && keysOk()
+        && request.resource.data.uid == resource.data.uid
+        && request.resource.data.createdAt == resource.data.createdAt
+        && nameOk(request.resource.data.displayName)
+        && request.resource.data.level is int
+        && request.resource.data.level >= resource.data.level
+        && request.resource.data.level <= resource.data.level + 3
+        && request.resource.data.level <= 10
+        && request.resource.data.totalCoins is int
+        && request.resource.data.totalCoins >= 0
+        && request.resource.data.totalCoins <= resource.data.totalCoins + 300
+        && (request.resource.data.lastLoginAt == request.time
+            || request.resource.data.lastLoginAt == resource.data.lastLoginAt);
+
+      // Nobody can delete profiles from the app.
+      allow delete: if false;
+    }
+
+    // Finished online Tic-Tac-Toe matches: one record per match (document name = the match id).
+    // A player of that match may CREATE it once (the time comes from Firebase's clock); nobody can change or delete it.
+    match /matches/{gameId} {
+      allow read: if request.auth != null
+        && (resource.data.xUid == request.auth.uid || resource.data.oUid == request.auth.uid);
+
+      allow create: if request.auth != null
+        && (request.resource.data.xUid == request.auth.uid || request.resource.data.oUid == request.auth.uid)
+        && request.resource.data.keys().hasOnly(
+             ['gameId', 'xUid', 'oUid', 'xName', 'oName', 'sx', 'so', 'winnerUid', 'playedAt'])
+        && request.resource.data.keys().hasAll(
+             ['gameId', 'xUid', 'oUid', 'xName', 'oName', 'sx', 'so', 'winnerUid', 'playedAt'])
+        && request.resource.data.gameId == gameId
+        && request.resource.data.xUid is string && request.resource.data.oUid is string
+        && request.resource.data.xUid != request.resource.data.oUid
+        && request.resource.data.sx is int && request.resource.data.sx >= 0 && request.resource.data.sx <= 3
+        && request.resource.data.so is int && request.resource.data.so >= 0 && request.resource.data.so <= 3
+        && request.resource.data.winnerUid in ['', request.resource.data.xUid, request.resource.data.oUid]
+        && request.resource.data.playedAt == request.time;
+
+      allow update, delete: if false;
+    }
+
+    // Everything else is closed.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

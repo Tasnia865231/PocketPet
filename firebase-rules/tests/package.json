@@ -1,0 +1,6 @@
+{
+  "name": "mochi-rules-tests",
+  "private": true,
+  "description": "Tests the Realtime Database security rules (invites, matches, coin claims) with the offline simulator. Run: npm install && node rules.test.js",
+  "dependencies": { "targaryen": "^3.1.0" }
+}

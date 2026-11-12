@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- a little pink paper plane flying over a fluffy white cloud -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="48dp" android:height="48dp" android:viewportWidth="32" android:viewportHeight="32">
+    <!-- cloud shadow -->
+    <path android:fillColor="#BFDDF2"
+        android:pathData="M4,24.5 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M9,22 a6.5,6.5 0 1,0 13,0 a6.5,6.5 0 1,0 -13,0 M17.5,25 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M9,24.5 h13.5 v5 h-13.5 z" />
+    <!-- cloud -->
+    <path android:fillColor="#FFFFFF"
+        android:pathData="M4,23 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M9,20.5 a6.5,6.5 0 1,0 13,0 a6.5,6.5 0 1,0 -13,0 M17.5,23.5 a5,5 0 1,0 10,0 a5,5 0 1,0 -10,0 M9,23 h13.5 v5 h-13.5 z" />
+    <!-- paper plane -->
+    <group android:pivotX="12" android:pivotY="12" android:rotation="-28" android:translateX="8" android:translateY="-5" android:scaleX="0.62" android:scaleY="0.62">
+        <path android:fillColor="#FFC2D6" android:strokeColor="#E0708A" android:strokeWidth="2" android:strokeLineJoin="round"
+            android:pathData="M2.01,21 L23,12 L2.01,3 L2,10 L17,12 L2,14 Z" />
+    </group>
+</vector>

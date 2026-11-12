@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="88dp"
+    android:layout_height="100dp"
+    android:background="?attr/selectableItemBackground"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="6dp"
+    android:layout_marginEnd="6dp">
+
+    <!-- Canvas-drawn food sprite -->
+    <com.example.pocketpet.ui.FoodSpriteView
+        android:id="@+id/foodSprite"
+        android:layout_width="52dp"
+        android:layout_height="52dp" />
+
+    <TextView android:id="@+id/foodName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="11sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:maxLines="1"
+        android:ellipsize="end" />
+
+    <TextView android:id="@+id/foodQty"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="10sp"
+        android:gravity="center" />
+</LinearLayout>

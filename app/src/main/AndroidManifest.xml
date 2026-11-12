@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- ===== Permissions this app asks for ===== -->
+    <!-- weather from Open-Meteo, and checking that the phone is online first -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <!-- "Mochi is awake / hungry / wants to play" (runtime permission on Android 13+) -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <!-- weather where you are: approximate location only (runtime permission, explained first) -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <!-- restore the alarms after a reboot -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- the sleeping service keeps running while the app is closed -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+    <!-- "Mochi is awake" on the exact minute (special access the user can grant) -->
+    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+    <!-- small buzzes when feeding, levelling up and waking up -->
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <!-- Mochi voice: the microphone is only used while Mochi is listening after you tap him -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-feature android:name="android.hardware.microphone" android:required="false" />
+
+    <!-- ===== Permissions this app DEFINES to protect Mochi's data (see PetProvider) ===== -->
+    <permission
+        android:name="com.example.pocketpet.permission.READ_PET"
+        android:description="@string/perm_read_desc"
+        android:label="@string/perm_read_label"
+        android:protectionLevel="normal" />
+    <permission
+        android:name="com.example.pocketpet.permission.WRITE_PET"
+        android:description="@string/perm_write_desc"
+        android:label="@string/perm_write_label"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="com.example.pocketpet.permission.READ_PET" />
+    <uses-permission android:name="com.example.pocketpet.permission.WRITE_PET" />
+
+    <application
+        android:name=".PocketPetApp"
+        android:allowBackup="true"
+        android:icon="@android:drawable/sym_def_app_icon"
+        android:label="@string/app_name"
+        android:theme="@style/Theme.PocketPet">
+
+        <activity android:name=".ui.LoginActivity" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.MainActivity" android:launchMode="singleTop" android:screenOrientation="portrait" />
+        <!-- parent = MainActivity, so opening the Shop from a notification still gives a proper Back stack -->
+        <activity android:name=".ui.ShopActivity" android:parentActivityName=".ui.MainActivity" />
+        <activity android:name=".ui.GameActivity" android:screenOrientation="portrait" />
+        <activity android:name=".ui.InventoryActivity" android:parentActivityName=".ui.MainActivity" />
+        <activity android:name=".ui.StatsActivity" />
+        <activity android:name=".ui.SettingsActivity" />
+        <activity android:name=".ui.CommunityActivity" android:parentActivityName=".ui.MainActivity" />
+        <!-- online Tic-Tac-Toe (both phones show the same board) -->
+        <activity android:name=".ui.MultiplayerGameActivity" android:screenOrientation="portrait" android:windowSoftInputMode="adjustResize" />
+
+        <!-- SERVICE: bound engine while the app is open, foreground "sleeping" session when it is closed -->
+        <service
+            android:name=".system.PetSessionService"
+            android:exported="false"
+            android:foregroundServiceType="dataSync" />
+
+        <!-- BROADCAST RECEIVERS (manifest): these must work while the app is closed -->
+        <receiver android:name=".system.BootReceiver" android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+        <receiver android:name=".system.HungerAlarmReceiver" android:exported="false" />      <!-- daily summary -->
+        <receiver android:name=".system.CareCheckReceiver" android:exported="false" />        <!-- every ~15 min: is Mochi OK? -->
+        <receiver android:name=".system.WakeAlarmReceiver" android:exported="false" />        <!-- "Mochi is awake" -->
+        <receiver android:name=".system.ActionReceiver" android:exported="false" />           <!-- notification buttons -->
+        <!-- charging, battery-low and date-change receivers are registered in code (MainActivity) -->
+
+        <!-- home-screen widget (reads Mochi through the content provider) -->
+        <receiver android:name=".system.PetWidget" android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/pet_widget_info" />
+        </receiver>
+
+        <!-- CONTENT PROVIDERS -->
+        <provider
+            android:name=".system.PetProvider"
+            android:authorities="com.example.pocketpet.provider"
+            android:exported="true"
+            android:readPermission="com.example.pocketpet.permission.READ_PET"
+            android:writePermission="com.example.pocketpet.permission.WRITE_PET" />
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="com.example.pocketpet.files"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+    </application>
+</manifest>

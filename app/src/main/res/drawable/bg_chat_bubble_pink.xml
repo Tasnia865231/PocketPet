@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- floating chat bubble (pink): pastel fill, gentle outline, soft shadow -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:top="3dp"><shape android:shape="rectangle"><solid android:color="#26000000"/><corners android:radius="20dp"/></shape></item>
+    <item android:bottom="3dp"><shape android:shape="rectangle"><solid android:color="#FFE6EC"/><corners android:radius="20dp"/><stroke android:width="2dp" android:color="#EFA3B8"/></shape></item>
+</layer-list>
